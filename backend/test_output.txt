@@ -1,0 +1,11 @@
+﻿============================================================
+ATS ANALYSIS ACCURACY TEST
+============================================================
+
+--- TEST 1: STRONG RESUME ---
+Overall: 95.5
+Breakdown: {'keyword_match': 100.0, 'formatting': 90.0, 'section_presence': 90.0, 'experience_relevance': 100.0}
+Skills (33): ['Python', 'Javascript', 'Typescript', 'React', 'Angular', 'Node.Js', 'Express', 'Django', 'Fastapi', 'SQL', 'Postgresql', 'Mongodb', 'Redis', 'AWS', 'Docker', 'Kubernetes', 'Terraform', 'Jenkins', 'Ci/Cd', 'GIT', 'Github', 'Machine Learning', 'NLP', 'Tensorflow', 'Agile', 'Scrum', 'Jira', 'Confluence', 'Rest Api', 'Graphql', 'Microservices', 'Linux', 'Bash']
+Experience: ['5', 'Jan Present', 'Jun Dec 2020', 'Present']
+Education: ['Bachelor', 'Associate', 'GPA', 'Cum Laude']
+Sections: ['Summary', 'Experience', 'Education', 'Skills', 'Projects', 'Certifications']

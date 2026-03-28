@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Build
+dist/
+build/
+
+# Test files
+test_*.py
+debug_*.py
+list_models.py
+
+# OS
+.DS_Store
+Thumbs.db
