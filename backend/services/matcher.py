@@ -1,8 +1,6 @@
-"""Job description matching via TF-IDF + cosine similarity."""
-
 import re
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+import math
+from collections import Counter
 
 
 def match_resume_to_job(resume_text: str, job_description: str) -> dict:
@@ -20,22 +18,15 @@ def match_resume_to_job(resume_text: str, job_description: str) -> dict:
             "suggestions": ["Unable to analyze — one or both texts are empty."],
         }
 
-    # TF-IDF vectorization
-    vectorizer = TfidfVectorizer(stop_words="english", max_features=5000)
-    try:
-        tfidf_matrix = vectorizer.fit_transform([resume_clean, jd_clean])
-    except ValueError:
-        return {
-            "match_score": 0.0,
-            "matched_keywords": [],
-            "missing_keywords": [],
-            "suggestions": ["Could not extract meaningful features from the texts."],
-        }
+    # 1. Tokenize
+    resume_tokens = resume_clean.split()
+    jd_tokens = jd_clean.split()
+    
+    # 2. Get Cosine Similarity
+    # We use a simplified bag-of-words cosine similarity for performance and reliability
+    similarity_score = round(_calculate_cosine_similarity(resume_tokens, jd_tokens) * 100, 1)
 
-    # Cosine similarity
-    # We still use TF-IDF for the broad similarity signal
-    similarity = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
-    similarity_score = round(similarity * 100, 1)
+    # Keyword analysis
 
     # Keyword analysis
     # NEW: We extract keywords from JD using a more robust method for small N
@@ -58,6 +49,23 @@ def match_resume_to_job(resume_text: str, job_description: str) -> dict:
         "missing_keywords": sorted(missing)[:20],
         "suggestions": suggestions,
     }
+
+
+def _calculate_cosine_similarity(tokens1, tokens2):
+    """Calculate cosine similarity between two lists of tokens."""
+    vec1 = Counter(tokens1)
+    vec2 = Counter(tokens2)
+    
+    intersection = set(vec1.keys()) & set(vec2.keys())
+    numerator = sum([vec1[x] * vec2[x] for x in intersection])
+
+    sum1 = sum([vec1[x]**2 for x in vec1.keys()])
+    sum2 = sum([vec2[x]**2 for x in vec2.keys()])
+    denominator = math.sqrt(sum1) * math.sqrt(sum2)
+
+    if not denominator:
+        return 0.0
+    return float(numerator) / denominator
 
 
 def _clean_text(text: str) -> str:
