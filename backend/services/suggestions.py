@@ -12,6 +12,15 @@ def generate_suggestions(analysis: dict, extracted_data: dict) -> dict:
     improvement_tips = []
     rewrite_suggestions = []
 
+    # Start with AI results if available
+    if "suggestions" in analysis:
+        ai_sug = analysis["suggestions"]
+        missing_keywords.extend(ai_sug.get("missing_keywords", []))
+        improvement_tips.extend(ai_sug.get("improvement_tips", []))
+        # Add a placeholder for rewrite suggestions if AI provided refined bullets
+        if analysis.get("improved_experience"):
+            improvement_tips.append("Review AI-optimized bullet points for your experience section.")
+
     # --- Missing sections ---
     essential_sections = ["Summary", "Experience", "Education", "Skills"]
     for section in essential_sections:

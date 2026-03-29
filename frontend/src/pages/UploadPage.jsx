@@ -36,13 +36,20 @@ export default function UploadPage() {
     try {
       setProgress('Uploading resume...');
       const uploadRes = await uploadResume(file);
-      setProgress('Running ATS analysis...');
-      const analysisRes = await analyzeResume(uploadRes.resume_id);
+      setProgress('Running AI ATS analysis...');
+      const analysisRes = await analyzeResume(uploadRes.resume_id, jobDesc);
+      
       let matchRes = null;
+      // If we have a JD, we can also run the fast regex matcher to supplement results
       if (jobDesc.trim()) {
-        setProgress('Matching with job description...');
-        matchRes = await matchResume(uploadRes.resume_id, jobDesc);
+        setProgress('Finalizing match results...');
+        try {
+          matchRes = await matchResume(uploadRes.resume_id, jobDesc);
+        } catch (mErr) {
+          console.error("Match engine failed, using AI results only:", mErr);
+        }
       }
+      
       navigate('/dashboard', { state: { analysis: analysisRes, match: matchRes, filename: file.name } });
     } catch (err) {
       setError(err.response?.data?.detail || err.message || 'Something went wrong.');

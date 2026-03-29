@@ -139,8 +139,8 @@ def analyze_resume_with_ai(text: str, job_description: str = "") -> dict:
                 return {}
         except Exception as e:
             if "429" in str(e) and attempt < 2:
-                print(f"Gemini Rate Limit (429). Waiting 30s... (Attempt {attempt+1}/3)")
-                time.sleep(30)
+                print(f"Gemini Rate Limit (429). Waiting 10s... (Attempt {attempt+1}/3)")
+                time.sleep(10)
                 continue
             print(f"Error calling Gemini: {e}")
             return {}
@@ -176,8 +176,8 @@ def fix_resume_with_ai(original_data: dict) -> dict:
             return json.loads(clean_json)
         except Exception as e:
             if "429" in str(e) and attempt < 2:
-                print(f"Gemini Fix Rate Limit (429). Waiting 30s for quota reset... (Attempt {attempt+1}/3)")
-                time.sleep(30)
+                print(f"Gemini Fix Rate Limit (429). Waiting 10s for quota reset... (Attempt {attempt+1}/3)")
+                time.sleep(10)
                 continue
             print(f"Error calling Gemini Fix: {e}")
             return original_data

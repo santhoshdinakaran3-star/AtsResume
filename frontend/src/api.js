@@ -5,7 +5,7 @@ const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 const api = axios.create({
   baseURL: API_BASE,
-  timeout: 120000,
+  timeout: 180000,
 });
 
 export async function uploadResume(file) {
@@ -17,8 +17,11 @@ export async function uploadResume(file) {
   return data;
 }
 
-export async function analyzeResume(resumeId) {
-  const { data } = await api.post('/analyze', { resume_id: resumeId });
+export async function analyzeResume(resumeId, jobDescription = "") {
+  const { data } = await api.post('/analyze', { 
+    resume_id: resumeId,
+    job_description: jobDescription
+  });
   return data;
 }
 

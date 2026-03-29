@@ -61,15 +61,22 @@ def analyze_resume(extracted_data: dict, job_description: str = "") -> dict:
         experience_list = [f"{exp.get('role', '')} at {exp.get('company', '')}" for exp in experience_raw if isinstance(exp, dict)]
         improved_experience = experience_raw
         education = ai_data.get("education", [])
-        detected_sections = list(set(["Summary", "Experience", "Education", "Skills"]))
+        # Identify sections from content
+        detected_sections = ["Summary"] # Assume summary if analyze_resume_with_ai is called
+        if skills: detected_sections.append("Skills")
+        if experience_list: detected_sections.append("Experience")
+        if education: detected_sections.append("Education")
         
         overall = round(
-            scores.get("keywords", 0) * 0.30 +
-            scores.get("formatting", 0) * 0.20 +
-            scores.get("sections", 0) * 0.25 +
-            scores.get("relevance", 0) * 0.25,
+            scores.get("keywords", 0) * 0.35 + # Increased weight for keywords (Gemini 2.0 is better at this)
+            scores.get("formatting", 0) * 0.15 +
+            scores.get("sections", 0) * 0.20 +
+            scores.get("relevance", 0) * 0.30, # High weight for relevance
             1
         )
+        
+        # Merge AI-detected missing keywords
+        missing_from_ai = ai_data.get("keywords", {}).get("missing", [])
         
         return {
             "resume_id": "",
@@ -88,7 +95,7 @@ def analyze_resume(extracted_data: dict, job_description: str = "") -> dict:
             "score_explanations": ai_data.get("score_explanations"),
             "validation": ai_data.get("validation"),
             "suggestions": {
-                "missing_keywords": ai_data.get("keywords", {}).get("missing", []),
+                "missing_keywords": missing_from_ai,
                 "improvement_tips": ["AI-powered analysis completed successfully."]
             }
         }
