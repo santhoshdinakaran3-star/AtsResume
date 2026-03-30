@@ -26,7 +26,7 @@ export default function Navbar() {
         borderBottom: '1px solid #E5E7EB',
       }}
     >
-      <div className="max-w-[1100px] w-full mx-auto px-4 sm:px-8 h-14 flex items-center justify-between">
+      <div className="resp-nav" style={{ height: '56px' }}>
         {/* Logo */}
         <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <div style={{

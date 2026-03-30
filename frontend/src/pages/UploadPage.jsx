@@ -67,7 +67,7 @@ export default function UploadPage() {
           <p style={{ color: '#6B7280', fontSize: '1rem' }}>Drop your resume and an optional job description to get started.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+        <div className="resp-grid-2" style={{ marginBottom: '1.5rem' }}>
           <FloatingCard delay={0.1}>
             <h2 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#111827', marginBottom: '1.25rem' }}>📄 Resume File</h2>
             <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : ''}`} id="resume-dropzone">

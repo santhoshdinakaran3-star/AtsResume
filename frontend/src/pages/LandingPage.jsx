@@ -55,14 +55,14 @@ export default function LandingPage() {
             Upload your resume to <span className="font-semibold text-gray-700">Zentix</span> and get instant ATS compatibility scores, match against job descriptions, and receive AI-powered improvement suggestions.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center w-full px-4 sm:px-0">
-            <Link to="/upload" className="glow-btn w-full sm:w-auto">⬆ Upload Resume</Link>
-            <Link to="/dashboard" className="glow-btn glow-btn-outline w-full sm:w-auto">◉ View Dashboard</Link>
+          <div className="resp-flex-center">
+            <Link to="/upload" className="glow-btn px-6">⬆ Upload Resume</Link>
+            <Link to="/dashboard" className="glow-btn glow-btn-outline px-6">◉ View Dashboard</Link>
           </div>
         </motion.div>
 
         {/* Feature Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-[960px] px-4">
+        <div className="resp-grid-4" style={{ width: '100%', maxWidth: '960px' }}>
           {features.map((f, i) => (
             <motion.div
               key={i}

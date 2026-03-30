@@ -48,7 +48,7 @@ export default function DashboardPage() {
     <>
       <ParticleBackground />
       <div className="page-container">
-        <motion.div initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mb-6">
+        <motion.div initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} className="resp-flex-between" style={{ alignItems: 'flex-end', marginBottom: '2rem' }}>
           <div>
             <h1 className="section-title gradient-text" style={{ marginBottom: '0.4rem' }}>Analysis Dashboard</h1>
             <p style={{ color: '#6B7280', fontSize: '0.95rem' }}>📄 {filename || 'Resume'} — Full ATS Report</p>
@@ -66,7 +66,7 @@ export default function DashboardPage() {
         </motion.div>
 
         {/* Score + 3D */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+        <div className="resp-grid-2" style={{ marginBottom: '1.25rem' }}>
           <FloatingCard delay={0.1} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
             <ScoreMeter score={overall_score} size={200} />
           </FloatingCard>
@@ -76,7 +76,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Breakdown */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+        <div className="resp-grid-4" style={{ marginBottom: '1.25rem' }}>
           {breakdownItems.map((item, i) => (
             <FloatingCard key={item.key} delay={0.3 + i * 0.08}>
               <div style={{ fontSize: '1.5rem', marginBottom: '0.4rem' }}>{item.icon}</div>
@@ -101,7 +101,7 @@ export default function DashboardPage() {
             <h3 style={{ fontSize: '0.85rem', fontWeight: 700, color: '#8B5CF6', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
               💡 AI SCORE INSIGHTS
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="resp-grid-2" style={{ gap: '1rem' }}>
               <div>
                 <p style={{ fontSize: '0.75rem', color: '#4B5563' }}><span style={{ fontWeight: 600 }}>Keywords:</span> {score_explanations.keywords}</p>
                 <p style={{ fontSize: '0.75rem', color: '#4B5563', marginTop: '4px' }}><span style={{ fontWeight: 600 }}>Formatting:</span> {score_explanations.formatting}</p>
@@ -115,7 +115,7 @@ export default function DashboardPage() {
         )}
 
         {/* Details */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+        <div className="resp-grid-3" style={{ marginBottom: '1.25rem' }}>
           <FloatingCard delay={0.5}>
             <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.75rem', color: '#059669' }}>🛠 Extracted Skills</h3>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
@@ -175,7 +175,7 @@ export default function DashboardPage() {
         {match && (
           <FloatingCard delay={0.7} style={{ marginBottom: '1.25rem' }}>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem', color: '#059669' }}>🎯 Job Description Match</h3>
-            <div className="grid grid-cols-1 md:grid-cols-[155px_1fr_1fr] gap-6 items-start">
+            <div className="resp-grid-experience" style={{ alignItems: 'start' }}>
               <div style={{ textAlign: 'center' }}><ScoreMeter score={match.match_score} size={130} label="Match Score" /></div>
               <div>
                 <p style={{ fontSize: '0.7rem', textTransform: 'uppercase', fontWeight: 600, color: '#9CA3AF', marginBottom: '0.4rem' }}>Matched Keywords</p>
@@ -193,7 +193,7 @@ export default function DashboardPage() {
           </FloatingCard>
         )}
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginTop: '1rem', flexWrap: 'wrap' }}>
+        <div className="resp-flex-center" style={{ marginTop: '1rem' }}>
           <button 
             onClick={handleAutoFix} 
             disabled={fixing} 
