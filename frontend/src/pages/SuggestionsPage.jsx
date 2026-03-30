@@ -48,12 +48,12 @@ export default function SuggestionsPage() {
 
         {/* Score summary */}
         <FloatingCard delay={0.1} style={{ marginBottom: '1.5rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between flex-wrap gap-4">
             <div>
               <p style={{ fontSize: '0.78rem', color: '#9CA3AF', marginBottom: '0.2rem' }}>Current ATS Score</p>
               <p style={{ fontSize: '1.75rem', fontWeight: 900 }} className="gradient-text">{analysis.overall_score} / 100</p>
             </div>
-            <div style={{ display: 'flex', gap: '1.5rem' }}>
+            <div className="flex flex-wrap gap-4 sm:gap-6 mt-2 sm:mt-0">
               {Object.entries(analysis.breakdown).map(([key, val]) => (
                 <div key={key} style={{ textAlign: 'center' }}>
                   <p style={{ fontSize: '0.7rem', color: '#9CA3AF', textTransform: 'capitalize', marginBottom: '0.15rem' }}>{key.replace(/_/g, ' ')}</p>

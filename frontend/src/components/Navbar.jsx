@@ -26,58 +26,52 @@ export default function Navbar() {
         borderBottom: '1px solid #E5E7EB',
       }}
     >
-      <div
-        style={{
-          maxWidth: '1100px',
-          margin: '0 auto',
-          padding: '0 2rem',
-          height: '56px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
+      <div className="max-w-[1100px] w-full mx-auto px-4 sm:px-8 h-14 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <div style={{
             width: '32px',
             height: '32px',
             borderRadius: '10px',
-            background: 'linear-gradient(135deg, #10B981, #059669)',
+            background: 'linear-gradient(135deg, #0cebeb, #20e3b2, #29ffc6)', 
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             color: '#fff',
             fontWeight: 900,
-            fontSize: '0.85rem',
+            fontSize: '1rem',
           }}>
-            A
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6H20L4 18H20" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="5" cy="6" r="2" fill="white"/>
+              <circle cx="19" cy="6" r="2" fill="white"/>
+              <circle cx="5" cy="18" r="2" fill="white"/>
+              <circle cx="19" cy="18" r="2" fill="white"/>
+              <circle cx="12" cy="12" r="2" fill="white"/>
+            </svg>
           </div>
           <span style={{
-            fontSize: '1.1rem',
+            fontSize: '1.25rem',
             fontWeight: 800,
             color: '#111827',
             letterSpacing: '-0.02em',
           }}>
-            ATS AI
+            Zentix
           </span>
         </Link>
 
         {/* Nav Links */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
           {links.map(({ to, label }) => {
             const isActive = location.pathname === to;
             return (
-              <Link
+               <Link
                 key={to}
                 to={to}
+                className="px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-lg transition-all"
                 style={{
-                  padding: '0.4rem 1rem',
-                  fontSize: '0.85rem',
                   fontWeight: isActive ? 600 : 500,
-                  borderRadius: '8px',
                   textDecoration: 'none',
-                  transition: 'all 0.2s ease',
                   color: isActive ? '#059669' : '#6B7280',
                   background: isActive ? '#ECFDF5' : 'transparent',
                 }}

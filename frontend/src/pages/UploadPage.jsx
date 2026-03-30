@@ -67,7 +67,7 @@ export default function UploadPage() {
           <p style={{ color: '#6B7280', fontSize: '1rem' }}>Drop your resume and an optional job description to get started.</p>
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginBottom: '1.5rem' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
           <FloatingCard delay={0.1}>
             <h2 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#111827', marginBottom: '1.25rem' }}>📄 Resume File</h2>
             <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : ''}`} id="resume-dropzone">
@@ -89,7 +89,7 @@ export default function UploadPage() {
             </div>
           </FloatingCard>
 
-          <FloatingCard delay={0.2}>
+          <FloatingCard delay={0.2} className="flex flex-col h-full">
             <h2 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#111827', marginBottom: '1.25rem' }}>
               🎯 Job Description <span style={{ fontSize: '0.75rem', fontWeight: 400, color: '#9CA3AF' }}>(optional)</span>
             </h2>
@@ -97,10 +97,8 @@ export default function UploadPage() {
               id="job-description" value={jobDesc} onChange={(e) => setJobDesc(e.target.value)}
               placeholder="Paste the job description here to get a match score and missing keywords analysis..."
               rows={8}
-              style={{
-                width: '100%', borderRadius: '12px', padding: '1rem', fontSize: '0.85rem', resize: 'none', outline: 'none',
-                background: '#F9FAFB', border: '1px solid #E5E7EB', color: '#111827', fontFamily: 'var(--font-main)', lineHeight: 1.6,
-              }}
+              className="w-full rounded-xl p-4 text-sm resize-none outline-none bg-gray-50 border border-gray-200 text-gray-900 flex-grow"
+              style={{ fontFamily: 'var(--font-main)', lineHeight: 1.6 }}
             />
             <p style={{ fontSize: '0.72rem', color: '#9CA3AF', marginTop: '0.5rem' }}>
               {jobDesc.length > 0 ? `${jobDesc.split(/\s+/).filter(Boolean).length} words` : 'Adding a JD enables match scoring'}

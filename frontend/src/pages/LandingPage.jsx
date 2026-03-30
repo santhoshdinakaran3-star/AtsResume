@@ -43,7 +43,7 @@ export default function LandingPage() {
             ⚡ AI-Powered Resume Analysis
           </motion.div>
 
-          <h1 style={{ fontSize: '3rem', fontWeight: 900, lineHeight: 1.08, letterSpacing: '-0.03em', marginBottom: '1rem', color: '#111827' }}>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4 text-gray-900">
             Beat the{' '}
             <span className="gradient-text">ATS</span>
             <br />
@@ -51,18 +51,18 @@ export default function LandingPage() {
             <span className="gradient-text-warm">Dream Job</span>
           </h1>
 
-          <p style={{ fontSize: '1.05rem', color: '#6B7280', lineHeight: 1.7, marginBottom: '2rem', maxWidth: '480px', marginLeft: 'auto', marginRight: 'auto' }}>
-            Upload your resume, get instant ATS compatibility scores, match against job descriptions, and receive AI-powered improvement suggestions.
+          <p className="text-base md:text-lg text-gray-500 mb-8 max-w-[480px] mx-auto leading-relaxed">
+            Upload your resume to <span className="font-semibold text-gray-700">Zentix</span> and get instant ATS compatibility scores, match against job descriptions, and receive AI-powered improvement suggestions.
           </p>
 
-          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/upload" className="glow-btn">⬆ Upload Resume</Link>
-            <Link to="/dashboard" className="glow-btn glow-btn-outline">◉ View Dashboard</Link>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center w-full px-4 sm:px-0">
+            <Link to="/upload" className="glow-btn w-full sm:w-auto">⬆ Upload Resume</Link>
+            <Link to="/dashboard" className="glow-btn glow-btn-outline w-full sm:w-auto">◉ View Dashboard</Link>
           </div>
         </motion.div>
 
         {/* Feature Cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', width: '100%', maxWidth: '960px' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-[960px] px-4">
           {features.map((f, i) => (
             <motion.div
               key={i}
@@ -70,12 +70,11 @@ export default function LandingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="glass-card"
-              style={{ padding: '1.5rem', textAlign: 'left' }}
+              className="glass-card p-6 text-left"
             >
-              <div style={{ fontSize: '1.75rem', marginBottom: '0.75rem' }}>{f.icon}</div>
-              <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#111827', marginBottom: '0.4rem' }}>{f.title}</h3>
-              <p style={{ fontSize: '0.82rem', lineHeight: 1.6, color: '#6B7280' }}>{f.desc}</p>
+              <div className="text-3xl mb-3">{f.icon}</div>
+              <h3 className="text-base font-bold text-gray-900 mb-1">{f.title}</h3>
+              <p className="text-sm leading-relaxed text-gray-500">{f.desc}</p>
             </motion.div>
           ))}
         </div>

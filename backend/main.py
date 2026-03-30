@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from routers import upload, analyze, match, generate
 
 app = FastAPI(
-    title="AI ATS Resume Analyzer",
+    title="Zentix - AI Resume Analyzer",
     description="Analyze resumes for ATS compatibility, match with job descriptions, and get improvement suggestions.",
     version="1.0.0",
 )
@@ -29,7 +29,7 @@ app.include_router(generate.router, tags=["Generate"])
 @app.get("/")
 async def root():
     return {
-        "name": "AI ATS Resume Analyzer API",
+        "name": "Zentix API",
         "version": "1.0.0",
         "endpoints": ["/upload", "/analyze", "/match"],
         "docs": "/docs",

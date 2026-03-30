@@ -24,6 +24,7 @@
   --gradient-main: linear-gradient(180deg, #FFFFFF 0%, #ECFDF5 100%);
   --gradient-primary: linear-gradient(135deg, #10B981, #059669);
   --gradient-accent: linear-gradient(135deg, #10B981, #84CC16);
+  --gradient-zentix: linear-gradient(135deg, #00f2fe, #f093fb);
   --font-main: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
